@@ -27,31 +27,22 @@
     <table>
     <colgroup>
       <col style="width: 10%">
-      <col style="width: 30%">
-      <col style="width: 15%">
-      <col style="width: 15%">
-      <col style="width: 15%">
-      <col style="width: 15%">
+      <col style="width: 40%">
+      <col style="width: 40%">
     </colgroup>
       <thead>
         <tr>
           <th>ID</th>
-          <th>NOMBRE MASCOTA</th>
-          <th>TIPO</th>
-          <th>COLOR</th>
-          <th>GÉNERO</th>
-          <th>PROPIETARIO</th>
+          <th>APELLIDO PROPIETARIO</th>
+          <th>NOMBRE PROPIETARIO</th>
         </tr>
       </thead>
       <tbody>
-  <?php foreach($listaMascotas as $mascota): ?>
+  <?php foreach($listaPropietarios as $propietario): ?>
     <tr>
-      <td><?= $mascota->idMascota ?></td>
-      <td><?= $mascota->nombre ?></td>
-      <td><?= $mascota->tipo ?></td>
-      <td><?= $mascota->color ?></td>
-      <td><?= $mascota->genero ?></td>
-      <td><?= $mascota->propietario ?></td>
+      <td><?= $propietario->idPropietario ?></td>
+      <td><?= $propietario->apellidos ?></td>
+      <td><?= $propietario->nombres ?></td>
     </tr>
   <?php endforeach ?>
 </tbody>
