@@ -1,46 +1,24 @@
 <?php
 require_once __DIR__.'/../config/Database.php';
-require_once __DIR__.'../../entities/Mascota.entidad.php';
+require_once __DIR__.'../../entities/Propietario.entidad.php';
 /**
- * Esta clase ocntiene logica para interactuar con la base de datos
+ * Esta clase contiene logica para interactuar con la base de datos
  */
-class Mascota{
+class Propietario{
   private $pdo=null;
   public function __construct(){$this->pdo=Database::getConexion();}
 
-  public function create(MascotaEntidad $entidad):int {
-    $sql="INSERT INTO MASCOTAS(idPropietario,tipo,nombre,color,genero) VALUES(?,?,?,?,?)";
+  public function create(PropietarioEntidad $entidad):int {
+    $sql="INSERT INTO PROPIETARIO(apellidos,nombres) VALUES(?,?)";
     $query=$this->pdo-> prepare($sql);
     $query->execute([
-      $entidad->__GET('idPropietario'),
-      $entidad->__GET('tipo'),
-      $entidad->__GET('nombre'),
-      $entidad->__GET('color'),
-      $entidad->__GET('genero')
+      $entidad->__GET('apellidos'),
+      $entidad->__GET('nombres'),
     ]);
     return $this->pdo->lastInsertId();//Obtenemos el último ID
   }
 
   public function getAll():array{
-    $sql=" 
-    SELECT 
-    MA.idMascota,
-    MA.nombre,
-    MA.tipo,
-    MA.color,
-    MA.genero,
-    CONCAT(PR.apellidos, ' ',PR.nombres) 'propietario'
-    FROM MASCOTAS MA
-    INNER JOIN PROPIETARIO PR ON MA.idPropietario=PR.idPropietario
-    ORDER BY MA.idMascota
-  ";
-  $query=$this->pdo->prepare($sql);
-  $query->execute();
-  //FETCH_CLASS(COLECCIÓN DE OBJETOS)
-  //FETCH_ASSOC(COLECCIÓN DE ARREGLOS ASOCIATIVOS)
-  return $query->fetchAll(PDO::FETCH_CLASS);
-  }
-  public function getPropietarios():array{
     $sql="SELECT * FROM PROPIETARIO";
   $query=$this->pdo->prepare($sql);
   $query->execute();
@@ -48,6 +26,7 @@ class Mascota{
   //FETCH_ASSOC(COLECCIÓN DE ARREGLOS ASOCIATIVOS)
   return $query->fetchAll(PDO::FETCH_CLASS);
   }
+
   public function getById():array{
     return [];
   }

@@ -22,6 +22,8 @@ CREATE TABLE MASCOTAS(
 INSERT INTO PROPIETARIO (apellidos,nombres) VALUES
 ('Perez','Hugo'),
 ('Castilla','Teresa');
+INSERT INTO PROPIETARIO (apellidos,nombres) VALUES
+('Anton','Felix');
 
 INSERT INTO MASCOTAS (idPropietario, tipo, nombre, color, genero, vive) VALUES
 (1,"PERRO", "FIRULAIS", "NEGRO", "MACHO", "SI" ),
